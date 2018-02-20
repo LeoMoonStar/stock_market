@@ -1,21 +1,69 @@
-import actions
-
-
+##import actions
 
 
 class actionOBJ:
-      date=""
-      action=""
-      price=""
-      tickers=""
-      shares=""
+      date="unknow"
+      action="unknow"
+      price="unknow"
+      ticker="unknow"
+      shares="unknow"
+      
+      def convert(self,x):
+          date=x['date']
+          D,T=date.split(" ")
+          #print(D)
+          #print(T)
+          year,month,day=D.split("/")
+          self.date=year+"-"+month+"-"+day
+          self.action=x['action']
+          self.price=x['price']
+          self.ticker=x['ticker']
+          self.shares=x['shares']
+      def  printSelf(self):
+           print("On "+self.date+" you have:\n")
+           print("       - "+self.shares+" shares of "+self.ticker+" at a price of $"+self.price)
 
-def _init_(acdDict):
-     self.date=acdDict["date"]
-     self.action=acdDict["action"]
-     self.price=acdDict["price"]
-     self.tickers=acdDict["tickers"]
-     self.shares=acdDict["shares"]
+class stockActionOBJ:
+       date="unknow"
+       dividend="unknow"
+       split="unknow"
+       stock="unknow"
+       def  convert(self,x):
+            D=x['date']
+            year,month,day=D.split("/")
+            self.date=year+"-"+month+"-"+day
+            self.dividend=x['dividend']
+            self.split=x['split']
+            self.stock=x['stock']
+       
+       def  printSelf(self):
+            print("On "+self.date+"\n")
+            print("       - "+self.dividend+"   "+self.split+"    "+self.stock)
+
+        
+
+class Mytransaction:
+      
+      def  actionProcess(x)  # we set a center to process all the transcation 
+           
+      def  stockActionProcess(y)
+      
+      def  printAll()
+         
+      
+            
+            
+            
+
+      
+           
+
+
+          
+   
+      
+
+
 #template: 
 '''
 On 1992-07-14, you have:
@@ -26,9 +74,6 @@ On 1992-07-14, you have:
 '''
 #
 
-def  printSelf():
-     print("On "+self.date+" you have:\n")
-     print("       - "+self.share+" shares of "+self.tickers+" at a price of $"+self.price)
 
 #orginal data input:
 
@@ -42,14 +87,37 @@ stock_actions = [{'date': '1992/08/14', 'dividend': '0.10', 'split': '', 'stock'
 #Lets see what we can do here
 #we first convert the actions from List of Dictionary into small piece.
 
+
+mainSession=Mytransaction()
+
 index=0
 for x in actions:
-    d={}
     d=x
     #print d['date']
-    i= actionOBJ(d)
+    i = actionOBJ()
+    i.convert(d)
+    Mytransaction.actionProcess(i)
+    #actionArray[index]=i
+    #index=index+1
+    #print(i.date)
+    #i.setDate(d["date"])
     i.printSelf()
-    print"\n"
+    #print"\n"
+
+print("\n")
+index=0
+for y in stock_actions:
+    s=y
+    i=stockActionOBJ()
+    i.convert(s)
+    Mytransaction.stockActionProcess(i)
+    #stockAction[index]=i
+    #index=index+1
+    i.printSelf()
+    #print"\n"
+
+Mytransaction.printAll()
+    
 
 
 
